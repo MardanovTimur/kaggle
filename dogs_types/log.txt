@@ -1,0 +1,31 @@
+<keras.engine.input_layer.InputLayer object at 0x7f679103e320> False
+<keras.layers.convolutional.Conv2D object at 0x7f67352f2ac8> False
+<keras.layers.convolutional.Conv2D object at 0x7f67352f29e8> False
+<keras.layers.pooling.MaxPooling2D object at 0x7f6733e202e8> False
+<keras.layers.convolutional.Conv2D object at 0x7f6733e9a438> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d413f98> False
+<keras.layers.pooling.MaxPooling2D object at 0x7f672d3e8b38> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d3e8c88> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d330160> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d33dbe0> False
+<keras.layers.pooling.MaxPooling2D object at 0x7f672d344dd8> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d344828> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d8a36a0> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d8a3c50> False
+<keras.layers.pooling.MaxPooling2D object at 0x7f672d8d0a58> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d8d04e0> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d98dd68> False
+<keras.layers.convolutional.Conv2D object at 0x7f672d95ef60> False
+<keras.layers.pooling.MaxPooling2D object at 0x7f672da61dd8> False
+Epoch 1/20
+
+   1/1000 [..............................] - ETA: 28:32 - loss: 4.8591 - accuracy: 0.0000e+00
+   2/1000 [..............................] - ETA: 20:53 - loss: 4.9522 - accuracy: 0.0000e+00
+   3/1000 [..............................] - ETA: 17:54 - loss: 4.7440 - accuracy: 0.0417    
+   4/1000 [..............................] - ETA: 16:25 - loss: 4.6821 - accuracy: 0.0312
+   5/1000 [..............................] - ETA: 15:30 - loss: 4.6996 - accuracy: 0.0250
+   6/1000 [..............................] - ETA: 14:53 - loss: 4.6958 - accuracy: 0.0208
+   7/1000 [..............................] - ETA: 14:27 - loss: 4.6715 - accuracy: 0.0179
+   8/1000 [..............................] - ETA: 14:08 - loss: 4.7548 - accuracy: 0.0234
+   9/1000 [..............................] - ETA: 13:52 - loss: 4.6647 - accuracy: 0.0278
+  10/1000 [..............................] - ETA: 13:40 - loss: 4.6895 - accuracy: 0.0250

@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==19.3b0"
+isort = "*"
+flake8 = "*"
+neovim = "*"
+pynvim = "*"
+autopep8 = "*"
+
+[packages]
+pipfile = "*"
+opencv-python = "*"
+numpy = "*"
+tensorflow-rocm = {path = "./libs/tensorflow_rocm-1.14.2-cp36-cp36m-manylinux1_x86_64.whl"}
+scikit-learn = "*"
+ipython = "*"
+pydot = "*"
+graphviz = "*"
+keras = "*"
+
+[requires]
+python_version = "3.6"
