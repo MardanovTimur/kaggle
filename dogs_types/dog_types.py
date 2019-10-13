@@ -217,42 +217,42 @@ def fit(**kwargs):
 
 
 if __name__ == '__main__':
-    #  pipe = [
-    #      #  read_dataset,
-    #      get_dumped_data,
-    #      prepare_data,
-    #      augmentation,
-    #      create_model,
-    #      fit,
-    #  ]
-    #  prev_step_value = None
-    #  for step in pipe:
-    #      next_step_value = step(returnable=prev_step_value)
-    #      prev_step_value = next_step_value
+    pipe = [
+        #  read_dataset,
+        get_dumped_data,
+        prepare_data,
+        augmentation,
+        create_model,
+        fit,
+    ]
+    prev_step_value = None
+    for step in pipe:
+        next_step_value = step(returnable=prev_step_value)
+        prev_step_value = next_step_value
 
-    file_name = 'gshep.jpg'
+    #  file_name = 'gshep.jpg'
 
-    image = cv2.imread(file_name, cv2.IMREAD_COLOR)
-    image = cv2.resize(image, WH)
-    X = np.array(image) / 255
-    X = augs_gen.apply_transform(X, {})
-    X = np.expand_dims(X, axis=0)
-    model = load_model(model_name)
-    results = model.predict([X, ])
+    #  image = cv2.imread(file_name, cv2.IMREAD_COLOR)
+    #  image = cv2.resize(image, WH)
+    #  X = np.array(image) / 255
+    #  X = augs_gen.apply_transform(X, {})
+    #  X = np.expand_dims(X, axis=0)
+    #  model = load_model(model_name)
+    #  results = model.predict([X, ])
 
-    indice = np.argmax(results[0], axis=0)
+    #  indice = np.argmax(results[0], axis=0)
 
 
-    file_y = open(DATA_DIR / 'ykes.dump', 'rb')
-    TRAIN_Y = pickle.load(file_y)
-    file_y.close()
+    #  file_y = open(DATA_DIR / 'ykes.dump', 'rb')
+    #  TRAIN_Y = pickle.load(file_y)
+    #  file_y.close()
 
-    print(f"Labels: {set(TRAIN_Y)}")
+    #  print(f"Labels: {set(TRAIN_Y)}")
 
-    label_encoder = LabelEncoder()
-    Y = label_encoder.fit_transform(TRAIN_Y[:OBJECTS_SIZE])
-    print(label_encoder.inverse_transform([indice, ]))
+    #  label_encoder = LabelEncoder()
+    #  Y = label_encoder.fit_transform(TRAIN_Y[:OBJECTS_SIZE])
+    #  print(label_encoder.inverse_transform([indice, ]))
 
-    for idx in results.argsort()[0][::-1][:5]:
-        print("{:.2f}%".format(results[0][idx]*100), "\t", label_encoder.inverse_transform([idx, ]))
+    #  for idx in results.argsort()[0][::-1][:5]:
+    #      print("{:.2f}%".format(results[0][idx]*100), "\t", label_encoder.inverse_transform([idx, ]))
 
