@@ -8,6 +8,7 @@ import logging
 import pathlib
 import pickle
 from datetime import datetime
+from tensorflow.python.client.session import InteractiveSession
 
 import keras.backend as K  # isort: skip
 import numpy as np
@@ -23,6 +24,14 @@ from keras_preprocessing.image import ImageDataGenerator
 
 from lib import found_images, get_images
 
+
+# For cuda
+#  config = tf.ConfigProto()
+#  config.gpu_options.allow_growth = True
+#  session = InteractiveSession(config=config)
+#  graph = tf.get_default_graph()
+
+# For ROCM opencl optimizations
 #  dtype = 'float32'
 #  K.set_floatx(dtype)
 #  K.set_epsilon(1e-4)
@@ -141,15 +150,16 @@ def fit(image_dir: str = IMAGE_DIR, dump: bool = True, **kwargs):
     with open(DATA_DIR / 'generator_labels.dump', 'wb') as file:
         pickle.dump(labels, file)
 
-    model.fit_generator(
-        train_generator,
-        validation_data=test_generator,
-        steps_per_epoch=train_generator.samples // BATCH_SIZE,
-        validation_steps=test_generator.samples // BATCH_SIZE,
-        epochs=EPOCHS,
-        verbose=1,
-        callbacks=[tensorboard_callback, model_checkpoint, reduce_lron],
-    )
+    with graph.as_default():
+        model.fit_generator(
+            train_generator,
+            validation_data=test_generator,
+            steps_per_epoch=train_generator.samples // BATCH_SIZE,
+            validation_steps=test_generator.samples // BATCH_SIZE,
+            epochs=EPOCHS,
+            verbose=1,
+            callbacks=[tensorboard_callback, model_checkpoint, reduce_lron],
+        )
     print('Prepare to write data on the disk')
 
     model.save(f'{model_name}.dump')
@@ -221,10 +231,10 @@ def stage_2():
 
 
 if __name__ == '__main__':
+    fit()
     #  aug_params = {
     #      'brightness_range': [0, 5],
     #  }
     #  augment_images_in_dir(VALIDATE_DIR,
     #                        VALIDATE_DIR / 'preview',
     #                        aug_params=aug_params)
-    pass

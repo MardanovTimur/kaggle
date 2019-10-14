@@ -17,7 +17,7 @@ tensorboard = "*"
 pipfile = "*"
 opencv-python = "*"
 numpy = "*"
-tensorflow-rocm = {path = "./libs/tensorflow_rocm-1.14.2-cp36-cp36m-manylinux1_x86_64.whl"}
+# tensorflow-rocm = {path = "./libs/tensorflow_rocm-1.14.2-cp36-cp36m-manylinux1_x86_64.whl"}
 scikit-learn = "*"
 ipython = "*"
 pydot = "*"
