@@ -10,6 +10,8 @@ flake8 = "*"
 neovim = "*"
 pynvim = "*"
 autopep8 = "*"
+pillow = "*"
+tensorboard = "*"
 
 [packages]
 pipfile = "*"
