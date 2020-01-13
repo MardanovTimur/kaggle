@@ -3,7 +3,8 @@
 
 import keras
 import pandas as pd
-from keras.layers import LSTM, Dense, Embedding, SpatialDropout1D
+from keras.layers import (LSTM, Conv1D, Dense, Dropout, Embedding,
+                          GlobalMaxPooling1D, SpatialDropout1D)
 from keras.models import Sequential
 from sklearn.model_selection import train_test_split
 
@@ -64,6 +65,24 @@ def get_model(input_length, output_length, model_kwargs):
     return model
 
 
+def get_model2(input_length, output_length, model_kwargs):
+    layers = [
+        Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=input_length),
+        Dropout(0.2),
+        Conv1D(250, 3, padding='valid', activation='relu', strides=1),
+        GlobalMaxPooling1D(),
+        Dense(EMBEDDING_DIM, activation='relu'),
+        Dropout(0.2),
+        Dense(output_length, activation='softmax'),
+    ]
+    print('input output length: ', input_length, output_length)
+    model = Sequential()
+    for layer in layers:
+        model.add(layer)
+    model.compile(**model_kwargs)
+    return model
+
+
 def fit(model, X, Y, **kwargs):
     model.fit(X, Y, **kwargs)
 
@@ -98,11 +117,11 @@ if __name__ == '__main__':
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=.1,
                                                         random_state=69)
 
-    model = get_model(X.shape[1], Y.shape[1], model_kwargs=MODEL_KWARGS)
+    model = get_model2(X.shape[1], Y.shape[1], model_kwargs=MODEL_KWARGS)
 
     fit(model, X_train, Y_train,
         epochs=TRAIN_PARAMS['epochs'],
         batch_size=TRAIN_PARAMS['batch_size'],
-        callbacks=get_callbacks(),
+        callbacks=get_callbacks('models-cnn'),
         validation_split=0.1,
         shuffle=True)

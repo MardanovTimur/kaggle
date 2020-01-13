@@ -50,9 +50,9 @@ def get_dataframe(filename):
     return df
 
 
-def get_callbacks():
+def get_callbacks(models_path='models'):
     from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, TensorBoard  # noqa
-    MODELS_DIR = pathlib.Path('models')
+    MODELS_DIR = pathlib.Path(models_path)
     logdir = "logs/scalars/" + datetime.now().strftime("%Y%m%d-%H%M%S")
     tensorboard_callback = TensorBoard(log_dir=logdir)
 
